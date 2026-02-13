@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Hola, que tal {{nombre}}{% endblock %}
+{% block content %}
+    <h2>Vamos a saludar</h2>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Pulsa para saludar
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Saludos!!!</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% if nombre %}
+                        <h1>Hola {{nombre|title}}</h1>
+                        <p>¿Cómo estás?</p>
+                    {% else %}
+                        <p>No has indicado un nombre</p>
+                    {% endif %}
+{% endblock %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('.static', filename='js/script.js') }}"></script>
+    {{ super() }}
+{% endblock %}
